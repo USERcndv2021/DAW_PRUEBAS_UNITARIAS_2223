@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.4.33122.133
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.33130.400
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsApp1", "WindowsFormsApp1.csproj", "{85950EF8-5988-415F-BD7F-C00828A7A4BE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gestionBancariaApp", "gestionBancariaApp.csproj", "{85950EF8-5988-415F-BD7F-C00828A7A4BE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GestionBancariaAppTest", "..\GestionBancariaAppTest\GestionBancariaAppTest.csproj", "{55998B8C-65B1-41C9-B998-2C903D821056}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gestionBancariaTest", "..\gestionBancariaTest\gestionBancariaTest.csproj", "{AC2A3AC8-0009-4CC7-BC9A-C42048CCA992}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{55998B8C-65B1-41C9-B998-2C903D821056}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{55998B8C-65B1-41C9-B998-2C903D821056}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{55998B8C-65B1-41C9-B998-2C903D821056}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC2A3AC8-0009-4CC7-BC9A-C42048CCA992}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC2A3AC8-0009-4CC7-BC9A-C42048CCA992}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC2A3AC8-0009-4CC7-BC9A-C42048CCA992}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC2A3AC8-0009-4CC7-BC9A-C42048CCA992}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
