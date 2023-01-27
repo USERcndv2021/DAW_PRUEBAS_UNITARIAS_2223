@@ -5,7 +5,7 @@ namespace gestionBancariaTest
 {
     [TestClass]
     public class gestionBancariaTests
-    {
+    {   //Equivalencias
         //Reintegro < saldo
         [TestMethod]
         public void ValidarReintegro()
@@ -17,8 +17,8 @@ namespace gestionBancariaTest
             GestionBancariaApp miApp = new GestionBancariaApp(saldoInicial);
             // Método a probar
             miApp.realizarReintegro(reintegro);
-            Assert.AreEqual(saldoEsperado, miApp.obtenerSaldo(), 0.001,
-            "Se produjo un error al realizar el reintegro, saldo" +
+            double actualCNDV = miApp.obtenerSaldo();
+            Assert.AreEqual(saldoEsperado,actualCNDV , 0.001, "Se produjo un error al realizar el reintegro, saldo" +
             "incorrecto.");
         }
         
@@ -35,8 +35,9 @@ namespace gestionBancariaTest
             miApp.realizarReintegro(reintegro);
 
             //assert
-            double actual = miApp.obtenerSaldo();
-            Assert.AreEqual(saldoEsperado, actual, "El balance de la cuenta es correcto");
+            double actualCNDV = miApp.obtenerSaldo();
+            Assert.AreEqual(saldoEsperado, actualCNDV, 0.001, "Se produjo un error al realizar el reintegro, saldo" +
+            "incorrecto.");
         }
 
         //Probando valores límites 
@@ -52,8 +53,9 @@ namespace gestionBancariaTest
             miApp.realizarReintegro(reintegro);
 
             //assert
-            double actual = miApp.obtenerSaldo();
-            Assert.AreEqual(saldoEsperado, actual, "El balance de la cuenta es correcto");
+            double actualCNDV = miApp.obtenerSaldo();
+            Assert.AreEqual(saldoEsperado, actualCNDV, 0.001, "Se produjo un error al realizar el reintegro, saldo" +
+            "incorrecto.");
         }
 
         
@@ -69,13 +71,14 @@ namespace gestionBancariaTest
             miApp.realizarReintegro(reintegro);
 
             //assert
-            double actual = miApp.obtenerSaldo();
-            Assert.AreEqual(saldoEsperado, actual, "El balance de la cuenta es correcto");
+            double actualCNDV = miApp.obtenerSaldo();
+            Assert.AreEqual(saldoEsperado, actualCNDV, 0.001, "Se produjo un error al realizar el reintegro, saldo" +
+            "incorrecto.");
         }
 
 
         [TestMethod]
-        public void reintegroLimiteAl_Saldo3()
+        public void reintegroLimite_Al_Saldo3()
         {
             //arrange
             double saldoInicial = 1000;
@@ -85,8 +88,9 @@ namespace gestionBancariaTest
             //act
             miApp.realizarReintegro(reintegro);
             //assert
-            double actual = miApp.obtenerSaldo();
-            Assert.AreEqual(saldoEsperado, actual, "El balance de la cuenta es correcto");
+            double actualCNDV = miApp.obtenerSaldo();
+            Assert.AreEqual(saldoEsperado, actualCNDV, 0.001, "Se produjo un error al realizar el reintegro, saldo" +
+            "incorrecto.");
 
         }
 
@@ -97,12 +101,12 @@ namespace gestionBancariaTest
         public void validarReintegroCantidadNoValida()
         {
             double saldoInicial = 1000;
-            double reintegro = -250;
-            double saldoFinal = saldoInicial - reintegro;
+            double reintegroCNDV = -250;
+            double saldoFinal = saldoInicial - reintegroCNDV;
             GestionBancariaApp miApp = new GestionBancariaApp(saldoInicial);
             try
             {
-                miApp.realizarReintegro(reintegro);
+                miApp.realizarReintegro(reintegroCNDV);
             }
             catch (ArgumentOutOfRangeException exception)
             {
@@ -119,12 +123,12 @@ namespace gestionBancariaTest
         public void validarReintegroCantidadMayor_A_saldo()
         {
             double saldoInicial = 1000;
-            double reintegro = 1250;
-            double saldoFinal = saldoInicial - reintegro;
+            double reintegroCNDV = 1250;
+            double saldoFinal = saldoInicial - reintegroCNDV;
             GestionBancariaApp miApp = new GestionBancariaApp(saldoInicial);
             try
             {
-                miApp.realizarReintegro(reintegro);
+                miApp.realizarReintegro(reintegroCNDV);
             }
             catch (ArgumentOutOfRangeException exception)
             {
@@ -141,12 +145,12 @@ namespace gestionBancariaTest
         public void validarReintegroCantidadIgual_Cero()
         {
             double saldoInicial = 1000;
-            double reintegro = 0;
-            double saldoFinal = saldoInicial - reintegro;
+            double reintegroCNDV = 0;
+            double saldoFinal = saldoInicial - reintegroCNDV;
             GestionBancariaApp miApp = new GestionBancariaApp(saldoInicial);
             try
             {
-                miApp.realizarReintegro(reintegro);
+                miApp.realizarReintegro(reintegroCNDV);
             }
             catch (ArgumentOutOfRangeException exception)
             {
@@ -160,10 +164,10 @@ namespace gestionBancariaTest
         }
 
         //-------------///----------------//////--------------------//////------------------///////------------------------///
-
+        //Equivalencias
         //Ingreso < saldo
         [TestMethod]
-        public void ValidarIngreso()
+        public void ValidarIngresoMenorSaldo()
         {
             // preparación del caso de prueba
             double saldoInicial = 1000;
@@ -172,7 +176,11 @@ namespace gestionBancariaTest
             GestionBancariaApp miApp = new GestionBancariaApp(saldoInicial);
             // Método a probar
             miApp.realizarIngreso(ingreso);
-            Assert.AreEqual(saldoEsperado, miApp.obtenerSaldo());
+            //assert
+            double actualCNDV = miApp.obtenerSaldo();
+            Assert.AreEqual(saldoEsperado, actualCNDV, 0.001, "Se produjo un error al realizar el reintegro, saldo" +
+            "incorrecto.");
+
         }
 
         // Ingreso >= saldo 
@@ -186,10 +194,12 @@ namespace gestionBancariaTest
             GestionBancariaApp miApp = new GestionBancariaApp(saldoInicial);
             // Método a probar
             miApp.realizarIngreso(ingreso);
-            Assert.AreEqual(saldoEsperado, miApp.obtenerSaldo());
+            //assert
+            double actualCNDV = miApp.obtenerSaldo();
+            Assert.AreEqual(saldoEsperado, actualCNDV, 0.001, "Se produjo un error al realizar el reintegro, saldo" +
+            "incorrecto.");
         }
 
-        
 
         //Pruebas que esperan excepciones
 
@@ -198,12 +208,12 @@ namespace gestionBancariaTest
         public void ingresoCantidadNoValida()
         {
             double saldoInicial = 1000;
-            double ingreso = -250;
-            double saldoFinal = saldoInicial + ingreso;
+            double ingresoCNDV = -250;
+            double saldoFinal = saldoInicial + ingresoCNDV;
             GestionBancariaApp miApp = new GestionBancariaApp(saldoInicial);
             try
             {
-                miApp.realizarIngreso(ingreso);
+                miApp.realizarIngreso(ingresoCNDV);
             }
             catch (ArgumentOutOfRangeException exception)
             {
@@ -221,13 +231,13 @@ namespace gestionBancariaTest
         public void ingresoIgual_A_Cero()
         {
             double saldoInicial = 1000;
-            double ingreso = 0;
-            double saldoFinal = saldoInicial + ingreso;
+            double ingresoCNDV = 0;
+            double saldoFinal = saldoInicial + ingresoCNDV;
             GestionBancariaApp miApp = new GestionBancariaApp(saldoInicial);
 
             try
             {
-                miApp.realizarIngreso(ingreso);
+                miApp.realizarIngreso(ingresoCNDV);
             }
             catch (ArgumentOutOfRangeException exception)
             {
@@ -250,7 +260,10 @@ namespace gestionBancariaTest
             GestionBancariaApp miApp = new GestionBancariaApp(saldoInicial);
             // Método a probar
             miApp.realizarIngreso(ingreso);
-            Assert.AreEqual(saldoEsperado, miApp.obtenerSaldo());
+            //assert
+            double actualCNDV = miApp.obtenerSaldo();
+            Assert.AreEqual(saldoEsperado, actualCNDV, 0.001, "Se produjo un error al realizar el reintegro, saldo" +
+            "incorrecto.");
         }
 
         [TestMethod]
@@ -263,7 +276,10 @@ namespace gestionBancariaTest
             GestionBancariaApp miApp = new GestionBancariaApp(saldoInicial);
             // Método a probar
             miApp.realizarIngreso(ingreso);
-            Assert.AreEqual(saldoEsperado, miApp.obtenerSaldo());
+            //assert
+            double actualCNDV = miApp.obtenerSaldo();
+            Assert.AreEqual(saldoEsperado, actualCNDV, 0.001, "Se produjo un error al realizar el reintegro, saldo" +
+            "incorrecto.");
         }
 
         [TestMethod]
@@ -276,36 +292,34 @@ namespace gestionBancariaTest
             GestionBancariaApp miApp = new GestionBancariaApp(saldoInicial);
             // Método a probar
             miApp.realizarIngreso(ingreso);
-            Assert.AreEqual(saldoEsperado, miApp.obtenerSaldo());
+            //assert
+            double actualCNDV = miApp.obtenerSaldo();
+            Assert.AreEqual(saldoEsperado, actualCNDV, 0.001, "Se produjo un error al realizar el reintegro, saldo" +
+            "incorrecto.");
         }
 
 
         //Probando todos los valores
         [TestMethod]
-        public void RootedValueRange() 
+        public void RootedValueRangeCNDV() 
         {
             double saldoInicial = 1000;
             double reintegro;
             GestionBancariaApp miApp = new GestionBancariaApp(saldoInicial);
             for (reintegro = 0; reintegro < 1000; reintegro++)
             {
-                RootedValue(miApp, reintegro);
+                RootedValueCNDV(miApp, reintegro);
             }
 
         }
 
-        public void RootedValue(GestionBancariaApp miApp, double cantidad)
+        public void RootedValueCNDV(GestionBancariaApp miApp, double cantidad)
         {
             if (cantidad > miApp.obtenerSaldo())
 
                 throw new Exception("La cantidad " + cantidad + " no es correcta");
 
         }
-
-
-
-
-
 
 
 

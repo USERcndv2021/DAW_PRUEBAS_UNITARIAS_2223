@@ -79,29 +79,31 @@ namespace GestionBancariaAppNS
                     }
                     catch (Exception ex)
                     {
-                        if (ex.Message.Equals(ERR_SALDO_INSUFICIENTE))
+                        if (ex.Message.Contains(ERR_SALDO_INSUFICIENTE))
                             MessageBox.Show("No se ha podido realizar la operación (¿Saldo insuficiente ?)");
                         else
-                        if (ex.Message.Equals(ERR_CANTIDAD_NO_VALIDA))
+                        if (ex.Message.Contains(ERR_CANTIDAD_NO_VALIDA))
                             MessageBox.Show("Cantidad no válida, sólo se admiten cantidades positivas.");
                     }
                 }
                 else
                 {
-                    try
-                    {
-                        realizarIngreso(cantidad);
-                        MessageBox.Show("Transacción realizada.");
-                    }
+                    if (rbIngreso.Checked)
+                        try
+                        {
+                            realizarIngreso(cantidad);
+                             MessageBox.Show("Transacción realizada.");
+                        }
                     catch (Exception ex)
-                    {
-                        if (ex.Message.Equals(ERR_CANTIDAD_NO_VALIDA))
+                        {
+                           if (ex.Message.Contains(ERR_CANTIDAD_NO_VALIDA))
                             MessageBox.Show("Cantidad no válida, sólo se admiten cantidades positivas.");
-                    }
-                    txtSaldo.Text = obtenerSaldo().ToString();
+                        }
+                         txtSaldo.Text = obtenerSaldo().ToString();
 
                 }
             }
         }
+
     }
 }
