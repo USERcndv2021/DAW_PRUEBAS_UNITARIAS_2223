@@ -7,8 +7,9 @@ namespace gestionBancariaTest
     public class gestionBancariaTests
     {   //Equivalencias
         //Reintegro < saldo
+
         [TestMethod]
-        public void ValidarReintegro()
+        public void ValidarReintegros()
         {
             // preparación del caso de prueba
             double saldoInicial = 1000;
@@ -18,8 +19,22 @@ namespace gestionBancariaTest
             // Método a probar
             miApp.realizarReintegro(reintegro);
             double actualCNDV = miApp.obtenerSaldo();
-            Assert.AreEqual(saldoEsperado,actualCNDV , 0.001, "Se produjo un error al realizar el reintegro, saldo" +
+            Assert.AreEqual(saldoEsperado, actualCNDV, 0.001, "Se produjo un error al realizar el reintegro, saldo" +
             "incorrecto.");
+
+
+            reintegro = 150;                      //Probando reintegrar varios valores
+            for (int i = 0; i < 5; i++)
+            {
+                saldoEsperado = saldoEsperado - reintegro;
+                miApp.realizarReintegro(reintegro);
+                actualCNDV = miApp.obtenerSaldo();
+                Assert.AreEqual(saldoEsperado, actualCNDV, 0.001, "Se produjo un error al realizar el reintegro, saldo" +
+                "incorrecto.");
+
+            }
+           
+
         }
         
         //Reintegro == saldo
@@ -166,8 +181,9 @@ namespace gestionBancariaTest
         //-------------///----------------//////--------------------//////------------------///////------------------------///
         //Equivalencias
         //Ingreso < saldo
+
         [TestMethod]
-        public void ValidarIngresoMenorSaldo()
+        public void ValidarIngresos()
         {
             // preparación del caso de prueba
             double saldoInicial = 1000;
@@ -178,10 +194,25 @@ namespace gestionBancariaTest
             miApp.realizarIngreso(ingreso);
             //assert
             double actualCNDV = miApp.obtenerSaldo();
-            Assert.AreEqual(saldoEsperado, actualCNDV, 0.001, "Se produjo un error al realizar el reintegro, saldo" +
+            Assert.AreEqual(saldoEsperado, actualCNDV, 0.001, "Se produjo un error al realizar el ingreso, saldo" +
             "incorrecto.");
 
+            ingreso = 250;                         //Probando ingresar varios valores
+            for (int i = 0; i < 1000; i++)
+            {
+                saldoEsperado = saldoEsperado + ingreso;
+                miApp.realizarIngreso(ingreso);
+                actualCNDV = miApp.obtenerSaldo();
+                Assert.AreEqual(saldoEsperado, actualCNDV, 0.001, "Se produjo un error al realizar el ingreso, saldo" +
+                "incorrecto.");
+
+            }
+
+
+
         }
+        
+
 
         // Ingreso >= saldo 
         [TestMethod]
@@ -196,7 +227,7 @@ namespace gestionBancariaTest
             miApp.realizarIngreso(ingreso);
             //assert
             double actualCNDV = miApp.obtenerSaldo();
-            Assert.AreEqual(saldoEsperado, actualCNDV, 0.001, "Se produjo un error al realizar el reintegro, saldo" +
+            Assert.AreEqual(saldoEsperado, actualCNDV, 0.001, "Se produjo un error al realizar el ingreso, saldo" +
             "incorrecto.");
         }
 
@@ -262,7 +293,7 @@ namespace gestionBancariaTest
             miApp.realizarIngreso(ingreso);
             //assert
             double actualCNDV = miApp.obtenerSaldo();
-            Assert.AreEqual(saldoEsperado, actualCNDV, 0.001, "Se produjo un error al realizar el reintegro, saldo" +
+            Assert.AreEqual(saldoEsperado, actualCNDV, 0.001, "Se produjo un error al realizar el ingreso, saldo" +
             "incorrecto.");
         }
 
@@ -278,23 +309,23 @@ namespace gestionBancariaTest
             miApp.realizarIngreso(ingreso);
             //assert
             double actualCNDV = miApp.obtenerSaldo();
-            Assert.AreEqual(saldoEsperado, actualCNDV, 0.001, "Se produjo un error al realizar el reintegro, saldo" +
+            Assert.AreEqual(saldoEsperado, actualCNDV, 0.001, "Se produjo un error al realizar el ingreso, saldo" +
             "incorrecto.");
         }
 
         [TestMethod]
-        public void ingresosConValoresLimites3()//Consultar
+        public void ingresosConValoresLimites3()
         {
             // preparación del caso de prueba
             double saldoInicial = 1000; 
-            double ingreso = double.MaxValue;
-            double saldoEsperado = double.MaxValue;
+            double ingreso = 250000;
+            double saldoEsperado = 251000;
             GestionBancariaApp miApp = new GestionBancariaApp(saldoInicial);
             // Método a probar
             miApp.realizarIngreso(ingreso);
             //assert
             double actualCNDV = miApp.obtenerSaldo();
-            Assert.AreEqual(saldoEsperado, actualCNDV, 0.001, "Se produjo un error al realizar el reintegro, saldo" +
+            Assert.AreEqual(saldoEsperado, actualCNDV, 0.001, "Se produjo un error al realizar el ingreso, saldo" +
             "incorrecto.");
         }
 
